@@ -18,6 +18,7 @@ jobs:
 
       - name: Update SSH Config file
         run: |
+          mkdir -p ~/.ssh
           touch ~/.ssh/config
           echo "Host ${{ secrets.HOST }}" >> ~/.ssh/config
           echo "ProxyCommand /usr/local/bin/cloudflared access ssh --hostname %h" >> ~/.ssh/config
