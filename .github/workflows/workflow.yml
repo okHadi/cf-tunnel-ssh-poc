@@ -23,13 +23,18 @@ jobs:
           echo "Host ${{ secrets.HOST }}" >> ~/.ssh/config
           echo "ProxyCommand /usr/local/bin/cloudflared access ssh --hostname %h" >> ~/.ssh/config
 
-      - name: Execute SSH Command
-        uses: appleboy/ssh-action@v1.1.0
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
-          script_stop: true
-          script: |
-            ls
-            whoami
+      - name: Trial with simple SSH
+        run: |
+          ssh -o StrictHostKeychecking=no ${{ secrets.HOST }}
+          ssh ${{ secrets.USERNAME }}@${{ secrets.HOST }} ls
+
+      # - name: Execute SSH Command
+      #   uses: appleboy/ssh-action@v1.1.0
+      #   with:
+      #     host: ${{ secrets.HOST }}
+      #     username: ${{ secrets.USERNAME }}
+      #     password: ${{ secrets.PASSWORD }}
+      #     script_stop: true
+      #     script: |
+      #       ls
+      #       whoami
