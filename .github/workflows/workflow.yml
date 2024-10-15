@@ -29,7 +29,7 @@ jobs:
       - name: SSH and execute commands
         run: |
           ssh -o StrictHostKeychecking=no ${{ secrets.HOST }}
-          sshpass -p "${{ secrets.PASSWORD }}" ssh ${{ secrets.USERNAME }}@${{ secrets.HOST }} << 'EOF'
+          sshpass -p "${{ secrets.PASSWORD }}" ssh khanh@${{ secrets.HOST }} << 'EOF'
           ls
           whoami
           EOF
